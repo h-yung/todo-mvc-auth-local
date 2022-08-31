@@ -31,6 +31,7 @@ const User = require('../models/User')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
+        console.log('you successfully logged in')
         res.redirect(req.session.returnTo || '/todos')
       })
     })(req, res, next)
@@ -81,7 +82,7 @@ const User = require('../models/User')
       if (err) { return next(err) }
       if (existingUser) {
         req.flash('errors', { msg: 'Account with that email address or username already exists.' })
-        return res.redirect('../signup')
+        return res.redirect('../login') //edit
       }
       user.save((err) => {
         if (err) { return next(err) }
