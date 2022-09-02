@@ -1,4 +1,5 @@
 const Todo = require('../models/Todo')
+const User = require('../models/User')
 
 module.exports = {
     getTodos: async (req,res)=>{
@@ -6,12 +7,15 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
+
+            const userWeWant = await User.findById(req.user.id); const actualDate = userWeWant['lastActiveDate']
+            
             res.render('todos.ejs', 
                 {
                     todos: todoItems, 
                     left: itemsLeft, 
                     user: req.user,
-                    
+                    lastActiveDate: actualDate
                 })
         }catch(err){
             console.log(err)

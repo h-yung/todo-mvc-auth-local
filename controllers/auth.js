@@ -30,6 +30,18 @@ const User = require('../models/User')
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
+
+        console.log(user)
+        console.log(user['_id'])
+        User.findByIdAndUpdate(
+          { _id: user['_id'] },
+          { lastActiveDate: new Date() },
+          function(err, result) {
+            if (err) {
+              res.send(err);
+            } 
+          }
+        );
         req.flash('success', { msg: 'Success! You are logged in.' })
         res.redirect(req.session.returnTo || '/todos')
       })

@@ -30,3 +30,10 @@ Ribbal
 - date completed
 - filter for tasks (dates)
 - movies instead of 
+
+## Learnings
+
+ [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+(in auth.js controller)
+cannot call both res.send() and res.redirect()
+

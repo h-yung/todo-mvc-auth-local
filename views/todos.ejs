@@ -11,7 +11,8 @@
     <h1>Todos</h1>
 
     <h2>Welcome <%= user.userName %>!</h2>
-    <p>Today is <%= new Date();%></p>
+    <p>Today is <%= new Date();%>.</p>
+    <p>You last logged in on <%= lastActiveDate %>.</p>
     
     <ul>
     <% todos.forEach( el => { %>
