@@ -10,10 +10,16 @@
 <body>
     <h1>Todos</h1>
 
-    <h2>Welcome <%= user.userName %>!</h2>
+    <% if (lastActiveDate) { %>
+        <h2>Welcome back, <%= user.userName %>!</h2>
+    <% } else { %>   
+        <h2>Welcome, <%= user.userName %>!</h2>
+    <% } %>
     <p>Today is <%= new Date();%>.</p>
+    <% if (lastActiveDate) { %>
     <p>You last logged in on <%= lastActiveDate %>.</p>
-    
+    <% } %>
+
     <ul>
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
