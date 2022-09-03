@@ -84,6 +84,7 @@ const User = require('../models/User')
       userName: req.body.userName,
       email: req.body.email,
       password: req.body.password
+      //a first time sign up does not have a lastActiveDate key. use to differentiate summary on getTodos
     })
   
     User.findOne({$or: [
