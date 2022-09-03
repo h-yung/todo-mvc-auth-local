@@ -24,16 +24,8 @@ module.exports = {
     },
     createTodo: async (req, res)=>{
         try{
-            await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id});
-
-
-            // const todosByUser = await Todo.find({userId:req.user.id});
-            // const todoWeWant = todosByUser[todosByUser.length-1]; 
-
-            // // get timeStamp at creation
-            // console.log(`New Todo added at `)
-
-            console.log('Todo has been added!')
+            let newTodo = await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id});
+            console.log(`A new todo has been added on ${newTodo.createdAt}`)
             res.redirect('/todos')
         }catch(err){
             console.log(err)
@@ -52,9 +44,16 @@ module.exports = {
     },
     markIncomplete: async (req, res)=>{
         try{
-            await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
-                completed: false
+            let docBeforeUpdate = await Todo.findById(req.body.todoIdFromJSFile)
+
+            let docRecordUpdated = await Todo.findOneAndUpdate({_id:req.body.todoIdFromJSFile},{
+                completed: false,
+                timestamps: false //don't want updatedAt changed when marking incomplete
             })
+            console.log(docBeforeUpdate.updatedAt)
+            console.log(docRecordUpdated.updatedAt) 
+            //however, strict equal returns 'false' even though shallow copy?
+
             console.log('Marked Incomplete')
             res.json('Marked Incomplete')
         }catch(err){
