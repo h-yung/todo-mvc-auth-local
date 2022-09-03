@@ -30,9 +30,8 @@ const User = require('../models/User')
       }
       req.logIn(user, (err) => {
         if (err) { return next(err) }
-
-        console.log(user)
-        console.log(user['_id'])
+        // console.log(user)
+        // console.log(user['_id'])
         User.findByIdAndUpdate(
           { _id: user['_id'] },
           { lastActiveDate: new Date() },
