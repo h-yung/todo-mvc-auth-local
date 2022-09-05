@@ -12,7 +12,7 @@ submit => GET req
 routes/main.js has the login, logout, and signup routes as well.
 
 ## Team
-Jordan, California
+Jordan, California, bay area
 Naomy, Miami
 Tea
 Daniel Schmidt - python, sql
