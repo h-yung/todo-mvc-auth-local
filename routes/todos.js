@@ -13,4 +13,8 @@ router.put('/markIncomplete', todosController.markIncomplete)
 
 router.delete('/deleteTodo', todosController.deleteTodo)
 
+router.get('/:id', todosController.getEdit)
+
+router.put('/updateTodo', todosController.updateTodo)
+
 module.exports = router

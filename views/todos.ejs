@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- added Date().toDateString() to specify only the day/month/year -->
     <h1>Todos</h1>
 
     <% if (lastActiveDate) { %>
@@ -15,16 +16,20 @@
     <% } else { %>   
         <h2>Welcome, <%= user.userName %>!</h2>
     <% } %>
-    <p>Today is <%= new Date();%>.</p>
+    <p>Today is <%= new Date().toDateString();%>.</p>
     <% if (lastActiveDate) { %>
-    <p>You last logged in on <%= lastActiveDate %>.</p>
+    <p>You last logged in on <%= lastActiveDate.toDateString() %>.</p>
     <% } %>
 
     <ul>
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
+                <div class="todo-item-title"><%= el.title %></div>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
                 <span class='del'> Delete </span>
+                <a href="/edit/<%= el._id %>" class="edit">
+                    <span>EDIT</span>
+                    </a>
             </li>
     <% }) %>    
     </ul>
@@ -32,8 +37,10 @@
     <h2><%= user.userName %> has <%= left %> things left to do.</h2>
 
     <form action="/todos/createTodo" method='POST'>
-        <input type="text" placeholder="Enter Todo Item" name='todoItem'>
-        <input type="submit">
+        <input type="text" name="title" value="title">
+        <textarea rows="6" cols="45" name="todoItem">what's to do?</textarea>
+        <!-- <input type="text" placeholder="Enter Todo Item" name='todoItem'> -->
+        <input type="submit" value="add todo">
     </form>
 
     <a href="/logout">Logout</a>
