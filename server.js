@@ -15,6 +15,10 @@ require('dotenv').config({path: './config/.env'})
 // Passport config
 require('./config/passport')(passport)
 
+// handle uploaded files
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 connectDB()
 
 app.set('view engine', 'ejs')

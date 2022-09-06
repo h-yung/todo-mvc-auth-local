@@ -15,6 +15,12 @@
     <% } else { %>   
         <h2>Welcome, <%= user.userName %>!</h2>
     <% } %>
+
+    <% if (profilePic) { %>
+        <img src="data:image/<%= profilePic.contentType%>;base64,<%= profilePic.data.toString('base64')%>" alt="profile pic">
+    <% } %>
+
+
     <p>Today is <%= new Date();%>.</p>
     <% if (lastActiveDate) { %>
     <p>You last logged in on <%= lastActiveDate %>.</p>

@@ -10,12 +10,14 @@ module.exports = {
 
             const userWeWant = await User.findById(req.user.id); 
             const actualDate = userWeWant['lastActiveDate']
+            const profilePic = userWeWant['profileImg']
             
             res.render('todos.ejs', 
                 {
                     todos: todoItems, 
                     left: itemsLeft, 
                     user: req.user,
+                    profilePic: profilePic,
                     lastActiveDate: actualDate
                 })
         }catch(err){

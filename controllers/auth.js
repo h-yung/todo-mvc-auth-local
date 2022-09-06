@@ -78,11 +78,17 @@ const User = require('../models/User')
       return res.redirect('../signup')
     }
     req.body.email = validator.normalizeEmail(req.body.email, { gmail_remove_dots: false })
+
+    const profilePic = req.files.profileImg
   
     const user = new User({
       userName: req.body.userName,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      profileImg: {
+        data: profilePic.data,
+        contentType: profilePic.mimetype
+      }
       //a first time sign up does not have a lastActiveDate key. use to differentiate summary on getTodos
     })
   
@@ -101,6 +107,7 @@ const User = require('../models/User')
           if (err) {
             return next(err)
           }
+          console.log('new user created')
           res.redirect('/todos')
         })
       })
