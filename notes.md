@@ -37,3 +37,20 @@ Ribbal
 (in auth.js controller)
 cannot call both res.send() and res.redirect()
 
+
+
+
+
+
+1) add title/description
+    - client side need more form/input
+    - update shcema to add a description
+    -
+    -
+2)add ability to edit
+    - add button clientside that links or makes it posible to edit todo
+    - change schema so its able to be edited
+    -
+    -
+3) add date to each todo
+4) add filter by button for newest or oldest

@@ -24,8 +24,11 @@ module.exports = {
     },
     createTodo: async (req, res)=>{
         try{
-            let newTodo = await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id});
-            console.log(`A new todo has been added on ${newTodo.createdAt}`)
+            let newTodo = await Todo.create({
+                todo: req.body.todoItem,
+                title: req.body.title,
+                completed: false, userId: req.user.id});
+            console.log(`A new todo has been added on ${newTodo}`)
             res.redirect('/todos')
         }catch(err){
             console.log(err)
@@ -66,6 +69,39 @@ module.exports = {
             await Todo.findOneAndDelete({_id:req.body.todoIdFromJSFile})
             console.log('Deleted Todo')
             res.json('Deleted It')
+            // res.redirect('/')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    getEdit: async (req,res)=>{
+        
+        const id = req.params.id
+        try{
+            const todoItems = await Todo.find({userId:req.user.id})  
+            res.render('edit.ejs', 
+                {
+                    todos: todoItems, 
+                    idOfTodo : id,
+                    newToDo: req.newTodo,
+                })
+        }catch(err){
+            console.log(err)
+        }
+    },
+    updateTodo: async (req,res)=>{
+        const id = req.params.id
+        try{
+            await Todo.findOneAndUpdate(
+                {
+                    // _id:req.body.todoIdFromJSFile,
+                title: req.body.title,
+                todo: req.body.todo},
+                err => {if (err) return res.status(500).send(err)}
+            )
+            console.log('updated Todo')
+            res.json('updated It')
+            // res.redirect('/edit')
         }catch(err){
             console.log(err)
         }

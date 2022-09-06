@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- added Date().toDateString() to specify only the day/month/year -->
+    <h1>Todos</h1>
+        <h2>Edit TODO Item</h2>
+    <ul>
+    <% todos.forEach( todos => { %>
+        <% if (todos._id==idOfTodo) { %>
+            <li class='todoItem' data-id='<%=todos._id%>'>
+                <input class="title" type="text" value="<%= todos.title %>" name="title">
+                <textarea class="content" name="content"><%= todos.content %>what's to do</textarea>
+                <!-- <span class='<%= todos.completed === true ? 'completed' : 'not'%>'><%= todos.todo %></span> -->
+                <button type="submit" class="confirm">Confirm</button>
+                <span class='del'> Delete </span>
+                <a href="/todos" class="cancel">Go Back To List</a>
+            </li>
+            <% } else { %>
+                <li>
+                    <div>
+                        <%= todos.title %>
+                    </div>
+                    <div>
+                        <%= todos.todo %>
+                    </div>
+                    <a href="/edit/<%= todos._id %>" class="edit"> <span>EDIT</span>
+                    </a>
+                    <span class='del'> Delete </span>
+                    </a>
+                    <a href="/todos" class="cancel">Go Back To List</a>
+                </li>
+                <% } %>
+                    <% }) %>  
+    </ul>
+
+
+    
+
+    <a href="/logout">Logout</a>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
