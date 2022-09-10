@@ -47,6 +47,7 @@ The _lists_ array entries are user-provided. TBC whether to set up by collection
 - group (_tbd - possibly sufficient to link with userID_)
 - userId (of creator), required
 - isReversed, default=false, system generated
+  - this may not be an issue but wondering if local change by one student user messes things up for other student users, since this value is updated globally for the card. Might be complications.
 - isPublished, default=false, system generated
 - collectionName (need this for creation; later, possibly sufficient to specify collectionName on retrieval of all docs in the list)
 
