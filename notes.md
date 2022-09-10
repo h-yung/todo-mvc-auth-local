@@ -99,6 +99,7 @@ For testing, also consider creating a non-teacher user account.
 - whether Published (a boolean that lets them appear for student users of the same school/group)
 - updating the flashcards
 - open question: should individual cards be unpublished or should initial dashboard prioritize a list-wide "isPublished" update 
+- Create short instructions/guide/hints to help a teacher use their dashboard to make new flashcards in the right list, update, delete, etc. Ideally the minimum needed if we design right.
 
 6. Student dashboard: show lists of cards available to them to study
   
